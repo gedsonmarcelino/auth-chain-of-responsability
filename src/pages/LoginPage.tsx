@@ -8,7 +8,7 @@ export function LoginPage() {
 
   const navigate = useNavigate()
 
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('test');
   const [password, setPassword] = useState('');
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -22,32 +22,38 @@ export function LoginPage() {
 
       navigate(PAGE_NAMES.HOME)
     } catch (error) {
-      if ( error instanceof FlowExceptionAbstract ){
-        error.handle({navigate})
+      if (error instanceof FlowExceptionAbstract) {
+        error.handle({ navigate })
       }
     }
-
-    return false;
   };
 
   return (
-    <>
-      <form onSubmit={handleSignIn}>
-        <div>
-          <label>Username:</label>
-          <input type="text" onChange={(e) => setUsername(e.target.value)} />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <button type="submit">Sign In</button>
-        </div>
-      </form>
-    </>
+    <div className='flex justify-center mt-20'>
+      <div className='flex-1 flex-col max-w-96'>
+        <form onSubmit={handleSignIn}>
+          <div className='flex flex-col'>
+            <label className='mb-2'>Username:</label>
+            <input 
+              className='input-text' 
+              type="text" 
+              onChange={(e) => setUsername(e.target.value)} 
+              value={username} />
+          </div>
+          <div className='flex flex-col'>
+            <label className='mb-2'>Password:</label>
+            <input
+              type="password"
+              className='input-password'
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+          </div>
+          <div className='mt-2'>
+            <button className='btn-primary' type="submit">Sign In</button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }

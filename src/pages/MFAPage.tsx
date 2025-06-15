@@ -22,13 +22,18 @@ export function MFAPage() {
     }
   }
 
-  return (
-    <>
-      <h1>MFA</h1>
+  const isConfirmDisabled = code.length < 3
 
-      <label>Typing the code:</label>
-      <input type="text" onChange={e=> setCode(e.target.value)} />
-      <button onClick={handleConfirm}>Confirm</button>
-    </>
+  return (
+    <div className="flex flex-col width-m-md p-12">
+      <h1 className="font-semibold mb-6 text-2xl">MFA</h1>
+
+      <label className="font-bold mb-4">Typing the code:</label>
+      <input
+        className="input-text mb-4"
+        type="text" 
+        onChange={e=> setCode(e.target.value)} />
+      <button className="btn-primary" onClick={handleConfirm} disabled={isConfirmDisabled} >Confirm</button>
+    </div>
   );
 }

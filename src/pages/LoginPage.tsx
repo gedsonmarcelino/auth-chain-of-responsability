@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { signInflow } from '../package/auth/flows/SignInFlow';
 import { useNavigate } from "react-router";
+import { PAGE_NAMES } from '../package/routes/constants';
 
 export function LoginPage() {
 
@@ -26,7 +27,7 @@ export function LoginPage() {
           break;
         case 'move_mfa':
           console.log("redirecting mfa...");
-          navigate("/mfa")
+          navigate(PAGE_NAMES.MFA)
           break;
       }
     }

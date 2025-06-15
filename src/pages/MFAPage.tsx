@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { mfaFlow } from "../package/auth/flows/MFAFlow";
 import { useNavigate } from "react-router";
+import { PAGE_NAMES } from "../package/routes/constants";
 
 export function MFAPage() {
   const navigate = useNavigate()
@@ -13,7 +14,7 @@ export function MFAPage() {
         code,
         acceptedTerms: true,
       })
-      navigate("/home")
+      navigate(PAGE_NAMES.HOME)
     } catch (error:Error) {
       if ( error.message === 'invalid_code'){
         window.alert("Invalid Code")

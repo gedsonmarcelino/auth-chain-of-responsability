@@ -1,4 +1,4 @@
-import type { TAuthContext } from "./AuthStepAbstract.types";
+import type { TAuthContext } from "./types";
 
 export abstract class AuthStepAbstract {
   protected nextStep?: AuthStepAbstract;
@@ -15,5 +15,5 @@ export abstract class AuthStepAbstract {
     }
   }
 
-  protected abstract process(context: any): Promise<boolean>;
+  protected abstract process(context: TAuthContext): Promise<boolean>;
 }

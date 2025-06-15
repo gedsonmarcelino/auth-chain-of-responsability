@@ -1,5 +1,5 @@
 import { AuthStepAbstract } from '../AuthStepAbstract';
-import type { TAuthContext, TUser } from '../AuthStepAbstract.types';
+import type { TAuthContext, TUser } from '../types';
 import { faker } from '@faker-js/faker';
 
 export class GetDataUserStep extends AuthStepAbstract {

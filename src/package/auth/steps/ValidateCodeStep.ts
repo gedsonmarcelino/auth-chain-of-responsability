@@ -1,5 +1,5 @@
 import { AuthStepAbstract } from '../AuthStepAbstract';
-import type { TAuthContext } from '../AuthStepAbstract.types';
+import type { TAuthContext } from '../types';
 
 export class ValidateCodeStep extends AuthStepAbstract {
   private check(context: TAuthContext) {

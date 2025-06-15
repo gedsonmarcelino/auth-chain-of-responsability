@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { signInflow } from '../package/auth/flows/SignInFlow';
 import { useNavigate } from "react-router";
 import { PAGE_NAMES } from '../package/routes/constants';
+import { InvalidCredentialException } from '../package/auth/exceptions/InvalidCredentialException';
+import { MfaException } from '../package/auth/exceptions/MfaException';
+import { TermException } from '../package/auth/exceptions/TermsException';
+import { FlowExceptionAbstract } from '../package/auth/exceptions/FlowExceptionAbstract';
 
 export function LoginPage() {
 
@@ -20,19 +24,9 @@ export function LoginPage() {
       });
 
       navigate(PAGE_NAMES.HOME)
-    } catch (error: Error) {
-      switch (error.message) {
-        case 'invalid_credentials':
-          window.alert('Invalid Credentials');
-          break;
-        case 'move_mfa':
-          console.log("redirecting mfa...");
-          navigate(PAGE_NAMES.MFA)
-          break;
-        case 'move_accepted_terms':
-          console.log("redirecting terms...");
-          navigate(PAGE_NAMES.TERMS) 
-          break;
+    } catch (error) {
+      if ( error instanceof FlowExceptionAbstract ){
+        error.handle({navigate})
       }
     }
 

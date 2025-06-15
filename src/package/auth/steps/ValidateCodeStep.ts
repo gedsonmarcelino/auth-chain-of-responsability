@@ -1,4 +1,5 @@
 import { AuthStepAbstract } from '../AuthStepAbstract';
+import { InvalidCodeException } from '../exceptions/InvalidCodeException';
 import type { TAuthContext } from '../types';
 
 export class ValidateCodeStep extends AuthStepAbstract {
@@ -9,7 +10,7 @@ export class ValidateCodeStep extends AuthStepAbstract {
   protected async process(context: TAuthContext): Promise<boolean> {
     console.log('Step: Validate Code', context);
     if (!this.check(context)) {
-      throw new Error('invalid_code');
+      throw new InvalidCodeException({context});
     }
     return true;
   }

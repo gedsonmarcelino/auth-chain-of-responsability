@@ -2,6 +2,7 @@ import { useState } from "react";
 import { mfaFlow } from "../package/auth/flows/MFAFlow";
 import { useNavigate } from "react-router";
 import { PAGE_NAMES } from "../package/routes/constants";
+import { FlowExceptionAbstract } from "../package/auth/exceptions/FlowExceptionAbstract";
 
 export function MFAPage() {
   const navigate = useNavigate()
@@ -14,13 +15,9 @@ export function MFAPage() {
         code,
       })
       navigate(PAGE_NAMES.HOME)
-    } catch (error:Error) {
-      if ( error.message === 'invalid_code'){
-        window.alert("Invalid Code")
-      }
-
-      if ( error.message === 'move_accepted_terms'){
-        navigate(PAGE_NAMES.TERMS)
+    } catch (error) {
+      if ( error instanceof FlowExceptionAbstract ){
+        error.handle({navigate})
       }
     }
   }

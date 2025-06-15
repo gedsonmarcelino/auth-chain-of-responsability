@@ -1,4 +1,5 @@
 import { AuthStepAbstract } from '../AuthStepAbstract';
+import { TermException } from '../exceptions/TermsException';
 import type { TAuthContext } from '../types';
 import {get} from 'lodash'
 
@@ -9,7 +10,7 @@ export class AcceptTermsStep extends AuthStepAbstract {
 
     console.log("acceptedTerms", acceptedTerms)
     if ( !acceptedTerms ){
-      throw new Error('move_accepted_terms')
+      throw new TermException({context})
     }
 
     return true;

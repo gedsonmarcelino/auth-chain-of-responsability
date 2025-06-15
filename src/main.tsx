@@ -4,17 +4,20 @@ import { createBrowserRouter, RouterProvider } from 'react-router';
 
 import './styles/layout.css';
 
-import { Login } from './pages/Login.tsx';
-import { Home } from './pages/Home.tsx';
+import { LoginPage } from './pages/LoginPage.tsx';
+import { Root } from './Root.tsx';
+import { HomePage } from './pages/HomePage.tsx';
+import { MFAPage } from './pages/MFAPage.tsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    Component: Login,
-  },
-  {
-    path: '/home',
-    Component: Home,
+    Component: Root,
+    children: [
+      { index: true, Component: LoginPage },
+      { path: "mfa", Component: MFAPage },
+      { path: "home", Component: HomePage },
+    ]
   },
 ]);
 

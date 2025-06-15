@@ -1,7 +1,11 @@
 import { useState } from 'react';
-import { signInflow } from '../package/auth/SignInFlow';
+import { signInflow } from '../package/auth/flows/SignInFlow';
+import { useNavigate } from "react-router";
 
-export function Login() {
+export function LoginPage() {
+
+  const navigate = useNavigate()
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,8 +24,9 @@ export function Login() {
         case 'invalid_credentials':
           window.alert('Invalid Credentials');
           break;
-        case 'move_2fa':
-          console.log('moving to mfa page');
+        case 'move_mfa':
+          console.log("redirecting mfa...");
+          navigate("/mfa")
           break;
       }
     }

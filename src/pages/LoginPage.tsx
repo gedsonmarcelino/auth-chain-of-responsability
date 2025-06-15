@@ -2,9 +2,6 @@ import { useState } from 'react';
 import { signInflow } from '../package/auth/flows/SignInFlow';
 import { useNavigate } from "react-router";
 import { PAGE_NAMES } from '../package/routes/constants';
-import { InvalidCredentialException } from '../package/auth/exceptions/InvalidCredentialException';
-import { MfaException } from '../package/auth/exceptions/MfaException';
-import { TermException } from '../package/auth/exceptions/TermsException';
 import { FlowExceptionAbstract } from '../package/auth/exceptions/FlowExceptionAbstract';
 
 export function LoginPage() {
@@ -14,7 +11,7 @@ export function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignIn = async (e) => {
+  const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {

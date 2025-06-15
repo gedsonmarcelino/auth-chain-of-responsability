@@ -17,9 +17,9 @@ export function LoginPage() {
       await signInflow.handle({
         username,
         password,
-        has2FA: false,
-        acceptedTerms: true,
       });
+
+      navigate(PAGE_NAMES.HOME)
     } catch (error: Error) {
       switch (error.message) {
         case 'invalid_credentials':
@@ -28,6 +28,10 @@ export function LoginPage() {
         case 'move_mfa':
           console.log("redirecting mfa...");
           navigate(PAGE_NAMES.MFA)
+          break;
+        case 'move_accepted_terms':
+          console.log("redirecting terms...");
+          navigate(PAGE_NAMES.TERMS) 
           break;
       }
     }

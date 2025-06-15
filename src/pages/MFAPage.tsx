@@ -12,12 +12,15 @@ export function MFAPage() {
     try {
       await mfaFlow.handle({
         code,
-        acceptedTerms: true,
       })
       navigate(PAGE_NAMES.HOME)
     } catch (error:Error) {
       if ( error.message === 'invalid_code'){
         window.alert("Invalid Code")
+      }
+
+      if ( error.message === 'move_accepted_terms'){
+        navigate(PAGE_NAMES.TERMS)
       }
     }
   }

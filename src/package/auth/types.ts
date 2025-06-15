@@ -3,13 +3,13 @@ export type TUser = {
   lastname: string;
   email: string;
   phone: string;
+  acceptedTerms: boolean,
 }
 
 export type TAuthContext = {
   username?: string,
   password?: string,
   code?: string, 
-  has2FA?: boolean,
-  acceptedTerms?: boolean,
+  hasMFA?: boolean,
   user?: TUser
 }

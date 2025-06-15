@@ -9,6 +9,7 @@ export const AuthRoutes = {
                 lastname: faker.person.lastName(),
                 phone: faker.phone.number(),
                 email: faker.internet.email(),
+                acceptedTerms: faker.datatype.boolean(0.5)
             }
         }
     }
